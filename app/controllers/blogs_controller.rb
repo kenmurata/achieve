@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_blog, only: [:edit, :update, :destroy]
   def index
     @blogs = Blog.all
@@ -33,8 +34,6 @@ class BlogsController < ApplicationController
     else
       render 'edit'
     end
-    #@blog.update(blogs_params)
-    #redirect_to blogs_path, notice: "ブログを編集しました!"
   end
   
   def destroy
