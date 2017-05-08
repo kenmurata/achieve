@@ -6,10 +6,15 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+  
   resources :contacts, only: [:index, :new, :create] do
     collection do
       post :confirm
     end
+  end
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
