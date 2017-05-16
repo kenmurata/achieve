@@ -58,3 +58,4 @@ group :development do
 end
 
 gem 'activeresource'
+gem 'her'
