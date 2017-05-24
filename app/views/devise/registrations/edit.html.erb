@@ -16,27 +16,37 @@
         <%= f.label :name %><br />
         <%= f.email_field :name, autofocus: true , class: "form-control" %>
       </div>
+      
+      <% if @user.provider.blank? %>
     
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-    
-      <div class="field">
-        <%= f.label :password %><br><i>(変更しない場合は空白にしてください)</i>
-        <% if @minimum_password_length %>
-          <em>※最低<%= @minimum_password_length %> 文字以上</em>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
-        <%= f.password_field :password, autocomplete: "off" , autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, class: "form-control" %>
-      </div>
     
-      <div class="field">
-        <%= f.label :current_password %> <br />
-        <%= f.password_field :current_password, autocomplete: "off", autofocus: true, class: "form-control" %>
+        <div class="field">
+          <%= f.label :password %><br><i>(変更しない場合は空白にしてください)</i>
+          <% if @minimum_password_length %>
+            <em>※最低<%= @minimum_password_length %> 文字以上</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "off" , autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, class: "form-control" %>
+        </div>
+    
+        <div class="field">
+          <%= f.label :current_password %> <br />
+          <%= f.password_field :current_password, autocomplete: "off", autofocus: true, class: "form-control" %>
+        </div>
+      
+      <% end %>
+      
+    <div class="field">
+        <%= profile_img(@user) if profile_img(@user) %>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
       </div>
 
       <div class="actions">
