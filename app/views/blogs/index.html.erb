@@ -5,6 +5,7 @@
       <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-default' %>
     <% @blogs.each do |blog| %>
     <div class="row">
+      <%= profile_img(@users.find(blog.user_id)) if profile_img(@users.find(blog.user_id)) %>
       <h4><strong><%= blog.title %></strong></h4>
       <p><%= blog.content %></p>
       <p>Author: <%=  @users.find(blog.user_id)[:email] %></p>
