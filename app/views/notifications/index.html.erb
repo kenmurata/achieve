@@ -1,0 +1,26 @@
+<h2>お知らせ</h2>
+<ul>
+    <div class="container">
+    <% if @notifications.count != 0 %>
+        <% @notifications.each do |notification| %>
+            <table class="table table-hover"><tr>
+                <td> <span>
+                    <% if notification.read == false %>
+                      未読:
+                    <% end %>
+                </span></td>
+                <td><p>
+                    <%= notification.comment.user.try(:name) %>さんが
+                    <%= link_to blog_path(notification.comment.blog, notification_id: notification.id) do %>
+                      あなたのブログ
+                    <% end %>
+                    にコメントしました。
+                </p></td>
+                <td><p><%= notification.created_at %></p></td>
+            </tr></table>
+        <% end %>
+    <% else %>
+        <p>お知らせはありません</p>
+    <% end %>
+    </div>
+</ul>
